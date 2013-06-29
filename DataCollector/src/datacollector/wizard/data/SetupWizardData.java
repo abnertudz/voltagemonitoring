@@ -1,0 +1,94 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package datacollector.wizard.data;
+
+import datacollector.com.data.ComConnectData;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Abner
+ */
+public class SetupWizardData {
+
+    private String computerName;
+    private String macAddress;
+    private ArrayList<ComConnectData> comData;
+    private ArrayList<Object[][]> deviceSettings;
+    private String readInterval;
+    private String deviceSleepTime;
+
+    public SetupWizardData()
+    {
+        computerName = null;
+        macAddress = null;
+        comData = new ArrayList<ComConnectData>();
+        deviceSettings = new ArrayList<Object[][]>();
+        readInterval = null;
+        deviceSleepTime = null;
+    }
+
+    public void setComputerName(String data)
+    {
+        computerName = data;
+    }
+
+    public String getComputerName()
+    {
+        return computerName;
+    }
+
+    public void setMacAddress(String data)
+    {
+        macAddress = data;
+    }
+
+    public String getMacAddress()
+    {
+        return macAddress;
+    }
+
+    public void setReadInterval(String data)
+    {
+        readInterval = data;
+    }
+
+    public String getReadInterval()
+    {
+        return readInterval;
+    }
+
+    public void setDeviceSleepTime(String data)
+    {
+        deviceSleepTime = data;
+    }
+
+    public String getDeviceSleepTime()
+    {
+        return deviceSleepTime;
+    }
+
+    public void setComData(ArrayList<ComConnectData> data)
+    {
+        comData = data;
+    }
+
+    public ArrayList<ComConnectData> getComData()
+    {
+        return comData;
+    }
+
+    public void setDeviceSettings(ArrayList<Object[][]> data)
+    {
+        deviceSettings = data;
+    }
+
+    public ArrayList<Object[][]> getDeviceSettings()
+    {
+        return deviceSettings;
+    }
+
+}
