@@ -5,9 +5,10 @@
 
 package datacollector.listeners.dialogs;
 import datacollector.com.CommConnector;
-import datacollector.view.applications.ComSetup;
 import datacollector.constants.StringConstants;
+import datacollector.factories.DialogFactory;
 import datacollector.globals.GlobalVariables;
+import datacollector.view.dialogs.ComSettingDialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -17,13 +18,11 @@ import java.awt.event.ActionEvent;
  */
 public class ComSetupActionListener implements ActionListener{
 
-    // Variable that holds the instance of this object
-    private static final ComSetupActionListener app = new ComSetupActionListener();
 
     public void actionPerformed(ActionEvent e)
     {
         String actionCommand = e.getActionCommand();
-        ComSetup comSetupDialog = ComSetup.getInstance();
+        ComSettingDialog comSetupDialog = (ComSettingDialog) DialogFactory.getInstance("ComSetting");
         CommConnector comm = new CommConnector();
         
         if(actionCommand.equals(StringConstants.OK_BUTTON))
@@ -73,10 +72,6 @@ public class ComSetupActionListener implements ActionListener{
         }
     }
 
-    public static ComSetupActionListener getInstance()
-    {
-        return app;
-    }
 
     private int getParityBitValue(String parity)
     {

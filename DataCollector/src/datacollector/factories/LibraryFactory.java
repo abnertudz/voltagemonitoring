@@ -33,7 +33,7 @@ public class LibraryFactory extends FactoryCore{
         classFile = new File(DialogFactory.rootDir + LibraryFactory.module + File.pathSeparator + className + classPostFix);
         if(!classFile.exists())
         {
-            LibraryFactory.errorLog(new Exception());
+            LibraryFactory.errorLog(new Exception(),"msg");
             return null;
         }
 

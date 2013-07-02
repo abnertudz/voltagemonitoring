@@ -5,6 +5,7 @@
 
 package datacollector.core;
 
+import datacollector.factories.DialogFactory;
 import datacollector.view.dialogs.SetupWizardDialog;
 import datacollector.view.dialogs.SetupWizardStep1;
 import datacollector.view.dialogs.SetupWizardStep2;
@@ -64,7 +65,7 @@ public class SetupWizardCore {
         if(true == validateStep())
         {
             currentStep++;
-            SetupWizardDialog wizard = SetupWizardDialog.getInstance();
+            SetupWizardDialog wizard = (SetupWizardDialog) DialogFactory.getInstance("SetupWizard");
             CardLayout wizardLayout = (CardLayout)wizard.getWizardPanel().getLayout();
             Dimension step2Dimension = wizard.getWizardStep2().getSize();
             wizard.setSize(step2Dimension);
@@ -112,7 +113,7 @@ public class SetupWizardCore {
 
     public void launchWizard()
     {
-        SetupWizardDialog wizard = SetupWizardDialog.getInstance();        
+        SetupWizardDialog wizard = (SetupWizardDialog) DialogFactory.getInstance("SetupWizard");
         wizard.launch();
     }
 

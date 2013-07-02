@@ -15,9 +15,6 @@ import java.awt.event.ActionEvent;
  */
 public class SetupWizardListener implements ActionListener{
 
-    // Variable that holds the instance of this object
-    private static final SetupWizardListener app = new SetupWizardListener();
-
     public void actionPerformed(ActionEvent e)
     {
         String actionCommand = e.getActionCommand();
@@ -49,11 +46,6 @@ public class SetupWizardListener implements ActionListener{
         {
             
         }
-    }
-
-    public static SetupWizardListener getInstance()
-    {
-        return app;
     }
 
 }

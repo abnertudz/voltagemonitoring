@@ -9,7 +9,7 @@
  * Created on Jun 13, 2013, 11:26:23 PM
  */
 
-package datacollector.View.Dialogs;
+package datacollector.view.dialogs;
 
 /**
  *

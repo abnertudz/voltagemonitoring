@@ -9,7 +9,6 @@ package datacollector.core;
  *
  * @author Abner
  */
-public interface SingletoneCore {
+public class ViewDefaultSettingCore {
 
-    
 }

@@ -10,10 +10,11 @@
  */
 
 package datacollector.core;
-import datacollector.listeners.actiontoolbar.*;
 import datacollector.listeners.dialogs.SetupWizardListener;
 import datacollector.listeners.menubar.MenubarActionListener;
 import datacollector.constants.StringConstants;
+import datacollector.factories.ActionListenerFactory;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -61,59 +62,59 @@ public class ViewCore extends JFrame {
     public void initActionListeners()
     {
         // Action Toolbars
-        connectAction.addActionListener(ComToolbarActionListner.getInstance());
+        connectAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         connectAction.setActionCommand(StringConstants.CONNECT_ACTION);
 
-        disconnectAction.addActionListener(ComToolbarActionListner.getInstance());
+        disconnectAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         disconnectAction.setActionCommand(StringConstants.DISCONNECT_ACTION);
         
-        autoDetectAction.addActionListener(ComToolbarActionListner.getInstance());
+        autoDetectAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         autoDetectAction.setActionCommand(StringConstants.AUTO_DETECT_ACTION);
 
-        exportAction.addActionListener(ComToolbarActionListner.getInstance());
+        exportAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         exportAction.setActionCommand(StringConstants.EXPORT_ACTION);
 
-        importAction.addActionListener(ComToolbarActionListner.getInstance());
+        importAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         importAction.setActionCommand(StringConstants.IMPORT_ACTION);
 
-        printAction.addActionListener(ComToolbarActionListner.getInstance());
+        printAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         printAction.setActionCommand(StringConstants.PRINT_ACTION);
 
-        startAction.addActionListener(ComToolbarActionListner.getInstance());
+        startAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         startAction.setActionCommand(StringConstants.START_ACTION);
 
-        stopAction.addActionListener(ComToolbarActionListner.getInstance());
+        stopAction.addActionListener((ActionListener) ActionListenerFactory.getInstance("ActionToolbar"));
         stopAction.setActionCommand(StringConstants.STOP_ACTION);
 
         // Menu Items
-        connectMenu.addActionListener(MenubarActionListener.getInstance());
+        connectMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         connectMenu.setActionCommand(StringConstants.CONNECT_ACTION);
 
-        disconnectMenu.addActionListener(MenubarActionListener.getInstance());
+        disconnectMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         disconnectMenu.setActionCommand(StringConstants.DISCONNECT_ACTION);
 
-        autoDetectMenu.addActionListener(MenubarActionListener.getInstance());
+        autoDetectMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         autoDetectMenu.setActionCommand(StringConstants.AUTO_DETECT_ACTION);
 
-        exportMenu.addActionListener(MenubarActionListener.getInstance());
+        exportMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         exportMenu.setActionCommand(StringConstants.EXPORT_ACTION);
 
-        importMenu.addActionListener(MenubarActionListener.getInstance());
+        importMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         importMenu.setActionCommand(StringConstants.IMPORT_ACTION);
 
-        printMenu.addActionListener(MenubarActionListener.getInstance());
+        printMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         printMenu.setActionCommand(StringConstants.PRINT_ACTION);
 
-        startMenu.addActionListener(MenubarActionListener.getInstance());
+        startMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         startMenu.setActionCommand(StringConstants.START_ACTION);
 
-        stopMenu.addActionListener(MenubarActionListener.getInstance());
+        stopMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         stopMenu.setActionCommand(StringConstants.STOP_ACTION);
 
-        setupWizardMenu.addActionListener(SetupWizardListener.getInstance());
+        setupWizardMenu.addActionListener((SetupWizardListener) ActionListenerFactory.getInstance("SetupWizard"));
         setupWizardMenu.setActionCommand(StringConstants.SETUP_WIZARD);
 
-        deviceSettingMenu.addActionListener(MenubarActionListener.getInstance());
+        deviceSettingMenu.addActionListener((MenubarActionListener) ActionListenerFactory.getInstance("Menubar"));
         deviceSettingMenu.setActionCommand(StringConstants.DEVICE_SETTING);
 
     }

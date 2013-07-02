@@ -5,10 +5,11 @@
 
 package datacollector.listeners.menubar;
 
+import datacollector.factories.DialogFactory;
 import datacollector.view.dialogs.ComAutoDetectDialog;
 import datacollector.view.dialogs.ComDisconnectDialog;
+import datacollector.view.dialogs.ComSettingDialog;
 import datacollector.view.dialogs.DeviceSettingDialog;
-import datacollector.view.applications.ComSetup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,9 +18,6 @@ import java.awt.event.ActionListener;
  * @author Abner
  */
 public class MenubarActionListener implements ActionListener{
-
-     // variables that holds the instance of this object
-    private static final MenubarActionListener menubarListener = new MenubarActionListener();
     
     private enum MenubarActionCommands
     {
@@ -33,15 +31,15 @@ public class MenubarActionListener implements ActionListener{
         switch(command)
         {
             case Connect:
-                 ComSetup comDialog = ComSetup.getInstance();
+                 ComSettingDialog comDialog = (ComSettingDialog) DialogFactory.getInstance("ComSetting");
                  comDialog.launch();
                 break;
             case Disconnect:
-                ComDisconnectDialog dialog = ComDisconnectDialog.getInstance();
+                ComDisconnectDialog dialog = (ComDisconnectDialog) DialogFactory.getInstance("ComDisconnect");
                 dialog.launch();
                 break;
             case AutoDetect:
-                ComAutoDetectDialog autoDialog = ComAutoDetectDialog.getInstance();
+                ComAutoDetectDialog autoDialog = (ComAutoDetectDialog) DialogFactory.getInstance("ComAutoDetect");
                 autoDialog.launch();
                 break;
             case Import:
@@ -55,15 +53,10 @@ public class MenubarActionListener implements ActionListener{
             case Stop:
                 break;
             case DeviceSetting:
-                DeviceSettingDialog deviceDialog = DeviceSettingDialog.getInstance();
+                DeviceSettingDialog deviceDialog = (DeviceSettingDialog) DialogFactory.getInstance("DeviceSetting");
                 deviceDialog.launch();
                 break;
         }
-    }
-
-    public static MenubarActionListener getInstance()
-    {
-        return menubarListener;
     }
 
 }

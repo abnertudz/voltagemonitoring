@@ -11,22 +11,20 @@
 
 package datacollector.view.dialogs;
 
-import datacollector.listeners.dialogs.ComAutoDetectActionListener;
 import datacollector.view.applications.AppView;
 import datacollector.constants.StringConstants;
-import java.awt.Dimension;
+import datacollector.core.SystemDialogCore;
+import datacollector.factories.ActionListenerFactory;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 
 /**
  *
  * @author Abner
  */
-public class ComAutoDetectDialog extends javax.swing.JDialog implements WindowListener {
-
-    private static final ComAutoDetectDialog app = new ComAutoDetectDialog(new JFrame(), true);
+public class ComAutoDetectDialog extends SystemDialogCore {
     
     /** Creates new form ComSettingDialog */
     public ComAutoDetectDialog(java.awt.Frame parent, boolean modal) {
@@ -36,37 +34,18 @@ public class ComAutoDetectDialog extends javax.swing.JDialog implements WindowLi
         initSystemListeners();
     }
 
-    /**
-     *  Initialize system properties
-     */
-    public void initSystemProperties()
-    {
-        // Sets up dialog location
-        AppView app = AppView.getInstance();
-        Dimension viewSize = app.getSize();
-        Dimension dilaogSize = this.getSize();
-        this.setLocation((int)(viewSize.getWidth()/2),(int)((viewSize.getHeight()/2) - (dilaogSize.getHeight()/2)));
-    }
 
     /**
      *  Initialize system listeners
      */
+    
+    @Override
     public void initSystemListeners()
     {
-        disconnectButton.addActionListener(ComAutoDetectActionListener.getInstance());
+        disconnectButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComAutoDetect"));
         disconnectButton.setActionCommand(StringConstants.OK_BUTTON);
-        cancelButton.addActionListener(ComAutoDetectActionListener.getInstance());
+        cancelButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComAutoDetect"));
         cancelButton.setActionCommand(StringConstants.CANCEL_BUTTON);
-    }
-
-    public static ComAutoDetectDialog getInstance()
-    {
-        return app;
-    }
-
-    public void launch()
-    {
-        this.setVisible(true);
     }
 
     public JCheckBox getCb1()
@@ -305,33 +284,5 @@ public class ComAutoDetectDialog extends javax.swing.JDialog implements WindowLi
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
-
-    public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowClosing(WindowEvent e) {
-        this.setVisible(false);
-    }
-
-    public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }

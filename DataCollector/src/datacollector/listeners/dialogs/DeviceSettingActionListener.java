@@ -5,6 +5,7 @@
 
 package datacollector.listeners.dialogs;
 
+import datacollector.factories.DialogFactory;
 import datacollector.view.dialogs.DeviceSettingDialog;
 import datacollector.globals.GlobalVariables;
 import datacollector.view.applications.AppView;
@@ -21,8 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DeviceSettingActionListener implements ActionListener{
 
-    private static final DeviceSettingActionListener app = new DeviceSettingActionListener();
-
     private Object[] addRow = {"","",""};
     
     private enum DeviceSettingCommands
@@ -32,7 +31,7 @@ public class DeviceSettingActionListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         DeviceSettingCommands command = DeviceSettingCommands.valueOf(e.getActionCommand());
-        DeviceSettingDialog dialog = DeviceSettingDialog.getInstance();
+        DeviceSettingDialog dialog = (DeviceSettingDialog) DialogFactory.getInstance("DeviceSetting");
         AppView appView = AppView.getInstance();
 
         switch(command)
@@ -109,11 +108,6 @@ public class DeviceSettingActionListener implements ActionListener{
         }
         
         return tableData;
-    }
-    
-    public static DeviceSettingActionListener getInstance()
-    {
-        return app;
     }
 
 }

@@ -14,7 +14,9 @@ package datacollector.view.dialogs;
 import datacollector.listeners.dialogs.SetupWizardListener;
 import datacollector.view.applications.AppView;
 import datacollector.constants.StringConstants;
+import datacollector.factories.ActionListenerFactory;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
@@ -51,11 +53,11 @@ public class SetupWizardStep1 extends javax.swing.JDialog {
      */
     public void initSystemListeners()
     {
-        nextButton.addActionListener(SetupWizardListener.getInstance());        
+        nextButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("SetupWizard"));
         nextButton.setActionCommand(StringConstants.NEXT_WIZARD);
-        cancelButton.addActionListener(SetupWizardListener.getInstance());
+        cancelButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("SetupWizard"));
         cancelButton.setActionCommand(StringConstants.CANCEL_WIZARD);
-        helpButton.addActionListener(SetupWizardListener.getInstance());
+        helpButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("SetupWizard"));
         helpButton.setActionCommand(StringConstants.HELP_WIZARD);
     }
 

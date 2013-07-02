@@ -37,9 +37,8 @@ public abstract class FactoryCore {
         
     }
 
-    protected static void errorLog(Exception e)
+    protected static void errorLog(Exception e, String msg)
     {
-         String msg = className + " class doesn't exist in " + rootDir + module;
          Logger.getLogger(FactoryCore.class.getName()).log(Level.SEVERE, msg, e);
     }
 

@@ -7,6 +7,7 @@ package datacollector.listeners.dialogs;
 import datacollector.com.CommConnector;
 import datacollector.view.dialogs.ComAutoDetectDialog;
 import datacollector.constants.StringConstants;
+import datacollector.factories.DialogFactory;
 import datacollector.globals.GlobalVariables;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,13 +18,10 @@ import java.awt.event.ActionEvent;
  */
 public class ComAutoDetectActionListener implements ActionListener{
 
-    // Variable that holds the instance of this object
-    private static final ComAutoDetectActionListener app = new ComAutoDetectActionListener();
-
     public void actionPerformed(ActionEvent e)
     {
         String actionCommand = e.getActionCommand();
-        ComAutoDetectDialog dialog = ComAutoDetectDialog.getInstance();
+        ComAutoDetectDialog dialog = (ComAutoDetectDialog) DialogFactory.getInstance("ComAutoDetect");
         CommConnector comm = new CommConnector();
         String comPort = this.getSelectedSerialPort();
         
@@ -65,7 +63,7 @@ public class ComAutoDetectActionListener implements ActionListener{
     private String getSelectedSerialPort()
     {
         String comPort = null;
-        ComAutoDetectDialog dialog = ComAutoDetectDialog.getInstance();
+        ComAutoDetectDialog dialog = (ComAutoDetectDialog) DialogFactory.getInstance("ComAutoDetect");
         if(dialog.getCb1().isSelected())
         {
             comPort = dialog.getCb1().getText();
@@ -73,10 +71,4 @@ public class ComAutoDetectActionListener implements ActionListener{
 
         return comPort;
     }
-
-    public static ComAutoDetectActionListener getInstance()
-    {
-        return app;
-    }
-
 }

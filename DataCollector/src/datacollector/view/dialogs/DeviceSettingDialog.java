@@ -11,10 +11,11 @@
 
 package datacollector.view.dialogs;
 
-import datacollector.listeners.dialogs.DeviceSettingActionListener;
-import datacollector.view.applications.AppView;
 import datacollector.constants.StringConstants;
+import datacollector.core.SystemDialogCore;
+import datacollector.factories.ActionListenerFactory;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -26,9 +27,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Abner
  */
-public class DeviceSettingDialog extends javax.swing.JDialog {
-
-    private static final DeviceSettingDialog app = new DeviceSettingDialog(AppView.getInstance(),true);
+public class DeviceSettingDialog extends SystemDialogCore {
 
     private final double MINIMUM_VOLTAGE = 0;
     private final double MAX_VOLTAGE = 100000;
@@ -49,10 +48,10 @@ public class DeviceSettingDialog extends javax.swing.JDialog {
     /**
      *  Initialize system properties
      */
+    @Override
     public void initSystemProperties()
     {
         // Sets up dialog location
-        AppView app = AppView.getInstance();
         Dimension viewSize = app.getSize();
         Dimension dilaogSize = this.getSize();
         this.setLocation((int)(viewSize.getWidth()/2),(int)((viewSize.getHeight()/2) - (dilaogSize.getHeight()/2)));
@@ -79,32 +78,19 @@ public class DeviceSettingDialog extends javax.swing.JDialog {
     /**
      *  Initialize system listeners
      */
+    @Override
     public void initSystemListeners()
     {
-        okButton.addActionListener(DeviceSettingActionListener.getInstance());
+        okButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("DeviceSetting"));
         okButton.setActionCommand(StringConstants.OK_BUTTON);
-        cancelButton.addActionListener(DeviceSettingActionListener.getInstance());
+        cancelButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("DeviceSetting"));
         cancelButton.setActionCommand(StringConstants.CANCEL_BUTTON);
-        addRowButton.addActionListener(DeviceSettingActionListener.getInstance());
+        addRowButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("DeviceSetting"));
         addRowButton.setActionCommand(StringConstants.ADD_ROW_BUTTON);
-        deleteRowButton.addActionListener(DeviceSettingActionListener.getInstance());
+        deleteRowButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("DeviceSetting"));
         deleteRowButton.setActionCommand(StringConstants.DELETE_ROW_BUTTON);
-        generateButton.addActionListener(DeviceSettingActionListener.getInstance());
+        generateButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("DeviceSetting"));
         generateButton.setActionCommand(StringConstants.GENERATE_BUTTON);
-    }
-
-    public static DeviceSettingDialog getInstance() {
-        return app;
-    }
-
-    public void launch()
-    {
-        this.setVisible(true);
-    }
-
-    public void close()
-    {
-        this.setVisible(false);
     }
 
     public JTable getDeviceSettingTable()

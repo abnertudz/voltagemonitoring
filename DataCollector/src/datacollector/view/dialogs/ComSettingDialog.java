@@ -11,16 +11,18 @@
 
 package datacollector.view.dialogs;
 
-import datacollector.listeners.dialogs.ComSetupActionListener;
-import datacollector.view.applications.AppView;
 import datacollector.constants.StringConstants;
-import java.awt.Dimension;
+import datacollector.core.SystemDialogCore;
+import datacollector.factories.ActionListenerFactory;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author Abner
  */
-public class ComSettingDialog extends javax.swing.JDialog {
+public class ComSettingDialog extends SystemDialogCore {
 
     /** Creates new form ComSettingDialog */
     public ComSettingDialog(java.awt.Frame parent, boolean modal) {
@@ -31,26 +33,87 @@ public class ComSettingDialog extends javax.swing.JDialog {
     }
 
     /**
-     *  Initialize system properties
-     */
-    public void initSystemProperties()
-    {
-        // Sets up dialog location
-        AppView app = AppView.getInstance();
-        Dimension viewSize = app.getSize();
-        Dimension dilaogSize = this.getSize();
-        this.setLocation((int)(viewSize.getWidth()/2),(int)((viewSize.getHeight()/2) - (dilaogSize.getHeight()/2)));
-    }
-
-    /**
      *  Initialize system listeners
      */
+    @Override
     public void initSystemListeners()
     {
-        comOkButton.addActionListener(ComSetupActionListener.getInstance());
+        comOkButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComSetup"));
         comOkButton.setActionCommand(StringConstants.OK_BUTTON);
-        comCancelButton.addActionListener(ComSetupActionListener.getInstance());
+        comCancelButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComSetup"));
         comCancelButton.setActionCommand(StringConstants.CANCEL_BUTTON);
+    }
+
+     /** Gets the comPort attribute object
+     *
+     * @return comPort JComboBox object
+     */
+    public JComboBox getComPortCBox()
+    {
+        return comPort;
+    }
+
+    /** Gets the comBaudRate attribute object
+     *
+     * @return comBaudRate JComboBox object
+     */
+    public JComboBox getComBaudRateCBox()
+    {
+        return comBaudRate;
+    }
+
+     /** Gets the comBufferSize attribute object
+     *
+     * @return comBufferSize JComboBox object
+     */
+    public JComboBox getComBufferSizeCBox()
+    {
+        return comBufferSize;
+    }
+
+     /** Gets the comDataBit attribute object
+     *
+     * @return comDataBit JComboBox object
+     */
+    public JComboBox getComDataBitCBox()
+    {
+        return comDataBit;
+    }
+
+    /** Gets the comParityBit attribute object
+     *
+     * @return comParityBit JComboBox object
+     */
+    public JComboBox getComParityBitCBox()
+    {
+        return comParityBit;
+    }
+
+    /** Gets the comOkButton attribute object
+     *
+     * @return comOkButton JButton object
+     */
+    public JButton getOkButton()
+    {
+        return comOkButton;
+    }
+
+    /** Gets the comCancelButton attribute object
+     *
+     * @return comCancelButton JButton object
+     */
+    public JButton getCancelButton()
+    {
+        return comCancelButton;
+    }
+
+     /** Gets the comStopBit attribute object
+     *
+     * @return comStopBit JComboBox object
+     */
+    public JComboBox getComStopBitCBox()
+    {
+        return comStopBit;
     }
 
     /** This method is called from within the constructor to
@@ -237,5 +300,6 @@ public class ComSettingDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
 
 }

@@ -24,8 +24,6 @@ import javax.swing.JPanel;
  */
 public class SetupWizardDialog extends javax.swing.JDialog {
 
-    private static final SetupWizardDialog app = new SetupWizardDialog(AppView.getInstance(), true);
-
     private SetupWizardStepP1 step1 = new SetupWizardStepP1();
     private SetupWizardStepP2 step2 = new SetupWizardStepP2();
     
@@ -54,11 +52,6 @@ public class SetupWizardDialog extends javax.swing.JDialog {
     {
         wizardPanel.add(step1, "1");
         wizardPanel.add(step2, "2");
-    }
-
-    public static SetupWizardDialog getInstance()
-    {
-        return app;
     }
 
     public void launch()

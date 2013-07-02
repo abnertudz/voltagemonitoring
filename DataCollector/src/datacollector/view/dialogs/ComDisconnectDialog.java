@@ -11,21 +11,20 @@
 
 package datacollector.view.dialogs;
 
-import datacollector.listeners.dialogs.ComDisconnectActionListener;
 import datacollector.view.applications.AppView;
 import datacollector.constants.StringConstants;
+import datacollector.core.SystemDialogCore;
+import datacollector.factories.ActionListenerFactory;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import javax.swing.JFrame;
 
 /**
  *
  * @author Abner
  */
-public class ComDisconnectDialog extends javax.swing.JDialog implements WindowListener {
-
-    private static final ComDisconnectDialog app = new ComDisconnectDialog(new JFrame(), true);
+public class ComDisconnectDialog extends SystemDialogCore {
     
     /** Creates new form ComSettingDialog */
     public ComDisconnectDialog(java.awt.Frame parent, boolean modal) {
@@ -36,36 +35,15 @@ public class ComDisconnectDialog extends javax.swing.JDialog implements WindowLi
     }
 
     /**
-     *  Initialize system properties
-     */
-    public void initSystemProperties()
-    {
-        // Sets up dialog location
-        AppView app = AppView.getInstance();
-        Dimension viewSize = app.getSize();
-        Dimension dilaogSize = this.getSize();
-        this.setLocation((int)(viewSize.getWidth()/2),(int)((viewSize.getHeight()/2) - (dilaogSize.getHeight()/2)));
-    }
-
-    /**
      *  Initialize system listeners
      */
+    @Override
     public void initSystemListeners()
     {
-        disconnectButton.addActionListener(ComDisconnectActionListener.getInstance());
+        disconnectButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComDisconnect"));
         disconnectButton.setActionCommand(StringConstants.OK_BUTTON);
-        cancelButton.addActionListener(ComDisconnectActionListener.getInstance());
+        cancelButton.addActionListener((ActionListener) ActionListenerFactory.getInstance("ComDisconnect"));
         cancelButton.setActionCommand(StringConstants.CANCEL_BUTTON);
-    }
-
-    public static ComDisconnectDialog getInstance()
-    {
-        return app;
-    }
-
-    public void launch()
-    {
-        this.setVisible(true);
     }
     
     /** This method is called from within the constructor to
@@ -197,33 +175,5 @@ public class ComDisconnectDialog extends javax.swing.JDialog implements WindowLi
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowClosing(WindowEvent e) {
-        this.setVisible(false);
-    }
-
-    public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }

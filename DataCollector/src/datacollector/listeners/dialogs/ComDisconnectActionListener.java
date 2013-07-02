@@ -6,8 +6,8 @@
 package datacollector.listeners.dialogs;
 import datacollector.com.CommConnector;
 import datacollector.view.dialogs.ComDisconnectDialog;
-import datacollector.view.applications.ComSetup;
 import datacollector.constants.StringConstants;
+import datacollector.factories.DialogFactory;
 import datacollector.globals.GlobalVariables;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,13 +19,10 @@ import java.util.Iterator;
  */
 public class ComDisconnectActionListener implements ActionListener{
 
-    // Variable that holds the instance of this object
-    private static final ComDisconnectActionListener app = new ComDisconnectActionListener();
-
     public void actionPerformed(ActionEvent e)
     {
         String actionCommand = e.getActionCommand();
-        ComDisconnectDialog dialog = ComDisconnectDialog.getInstance();
+        ComDisconnectDialog dialog = (ComDisconnectDialog) DialogFactory.getInstance("ComDisconnect");
         
         if(actionCommand.equals(StringConstants.OK_BUTTON))
         {
@@ -49,11 +46,6 @@ public class ComDisconnectActionListener implements ActionListener{
         {
             dialog.setVisible(false);
         }
-    }
-
-    public static ComDisconnectActionListener getInstance()
-    {
-        return app;
     }
 
 }
