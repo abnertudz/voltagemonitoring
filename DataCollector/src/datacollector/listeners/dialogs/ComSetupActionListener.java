@@ -45,8 +45,8 @@ public class ComSetupActionListener implements ActionListener{
             switch(result)
             {
                 case 1:
-                    comSetupDialog.setVisible(false);
-                    GlobalVariables.comConnections.add(comm);                    
+                    comSetupDialog.close();
+                    GlobalVariables.comConnection = comm;
                     System.out.println("Success");
                     break;
                 case 2:

@@ -11,13 +11,17 @@ package datacollector.core;
  */
 public class ComDataCore {
 
-    private int frameStart;    
-    private int command;
-    private int data1LSB;
-    private int data1MSB;
-    private int data2;
-    private int cs;
-    private int frameEnd;
+    protected int frameStart;
+    protected int command;
+    protected int data1LSB;
+    protected int data1MSB;
+    protected int data2;
+    protected int cs;
+    protected int frameEnd;
+    protected static int MAX_FRAME_USB = 7;
+    protected static int MAX_FRAME_COM = 9;
+
+    protected double ADC1_VOLTAGE_UNIT = 100;
 
     public ComDataCore()
     {
@@ -121,6 +125,32 @@ public class ComDataCore {
     {
         return frameEnd;
     }
-    
+
+    public double getDeviceVoltage()
+    {
+        double voltage= ((data1MSB << 8) | data1LSB);
+        return voltage;
+    }
+
+    public int getDeviceAddress()
+    {
+         int address = data1MSB << 8;
+         return (address | data1LSB);
+    }
+
+    public byte[] getBytes()
+    {
+        byte[] sendData = new byte[MAX_FRAME_USB];
+
+        sendData[0] = (byte)frameStart;
+        sendData[1] = (byte)command;
+        sendData[2] = (byte)data1LSB;
+        sendData[3] = (byte)data1MSB;
+        sendData[4] = (byte)data2;
+        sendData[5] = (byte)cs;
+        sendData[6] = (byte)frameEnd;
+            
+        return sendData;
+    }
 
 }

@@ -6,12 +6,15 @@
 package datacollector.com;
 import datacollector.com.data.ComConnectData;
 import datacollector.constants.StringConstants;
+import datacollector.globals.GlobalVariables;
+import datacollector.listeners.serialport.SerialPortListener;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.comm.*;
@@ -147,6 +150,20 @@ public class CommConnector{
                   out = serialPort.getOutputStream();
                   in = serialPort.getInputStream();
 
+                  serialPort.addEventListener(new SerialPortListener());
+
+                  serialPort.notifyOnDataAvailable(true);
+                  serialPort.notifyOnBreakInterrupt(true);
+                  serialPort.notifyOnCarrierDetect(true);
+                  serialPort.notifyOnCTS(true);
+                  serialPort.notifyOnDataAvailable(true);
+                  serialPort.notifyOnDSR(true);
+                  serialPort.notifyOnFramingError(true);
+                  serialPort.notifyOnOutputEmpty(true);
+                  serialPort.notifyOnOverrunError(true);
+                  serialPort.notifyOnParityError(true);
+                  serialPort.notifyOnRingIndicator(true);
+
                   comData.setupData(comm, baudrate, parity, dataBits, stopBits, bufferSize);
              }
              catch (PortInUseException e)
@@ -157,6 +174,11 @@ public class CommConnector{
              catch (UnsupportedCommOperationException e)
              {
                   result = CommConnector.COMM_CONNECT_PORT_NOT_SUPPORTED;
+                  Logger.getLogger(CommConnector.class.getName()).log(Level.SEVERE, null, e);
+             }
+             catch (TooManyListenersException e)
+             {
+                  result = CommConnector.COMM_CONNECT_INUSE;
                   Logger.getLogger(CommConnector.class.getName()).log(Level.SEVERE, null, e);
              }
              catch (IOException e)
@@ -195,18 +217,25 @@ public class CommConnector{
      /**
       *  Reads data in Serial Port
       */
-      public int read()
+      public int read(byte[] buffer)
       {
-          int readValue = 0;
+          int length = 0;
           try
           {
-             readValue = in.read();
+             if(GlobalVariables.DATA_AVAILABLE)
+             {
+                 while(in.available() > 0)
+                 {
+                     length = in.read(buffer);
+                 }
+                 GlobalVariables.DATA_AVAILABLE = false;
+             }             
           }
           catch(IOException e)
           {             
              Logger.getLogger(CommConnector.class.getName()).log(Level.SEVERE, null, e);
           }
-          return readValue;
+          return length;
       }
 
      /**

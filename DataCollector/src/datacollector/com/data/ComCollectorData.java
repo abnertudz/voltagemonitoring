@@ -23,12 +23,21 @@ public class ComCollectorData extends ComDataCore{
         addressMSB = 0;
     }
 
-    public int getAddress()
+    @Override
+    public int getDeviceAddress()
     {
         int address = addressMSB << 8;
-        return (addressMSB & addressLSB);
+        //System.out.println("Address : " + (address | addressLSB));
+        return (address | addressLSB);
     }
-    
+
+    @Override
+    public double getDeviceVoltage()
+    {        
+        double voltage= ((((data1MSB << 8) | data1LSB)*ADC1_VOLTAGE_UNIT))/1000;
+        return voltage;
+    }
+     
     public int getAddressLSB()
     {
         return addressLSB;
@@ -49,4 +58,21 @@ public class ComCollectorData extends ComDataCore{
         addressMSB = data;
     }
 
+    @Override
+    public byte[] getBytes()
+    {
+        byte[] sendData = new byte[MAX_FRAME_COM];
+            
+        sendData[0] = (byte)frameStart;
+        sendData[1] = (byte)command;
+        sendData[2] = (byte)addressLSB;
+        sendData[3] = (byte)addressMSB;
+        sendData[4] = (byte)data1LSB;
+        sendData[5] = (byte)data1MSB;
+        sendData[6] = (byte)data2;
+        sendData[7] = (byte)cs;
+        sendData[8] = (byte)frameEnd;
+
+        return sendData;
+    }
 }

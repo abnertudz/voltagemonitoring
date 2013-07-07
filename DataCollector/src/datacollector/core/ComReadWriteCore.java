@@ -6,97 +6,84 @@
 package datacollector.core;
 
 import datacollector.com.CommConnector;
-import datacollector.view.applications.AppView;
 import datacollector.globals.GlobalVariables;
 
 /**
  *
  * @author Abner
  */
-public class ComReadWriteCore implements Runnable{
+public class ComReadWriteCore extends Thread{
 
     private CommConnector comPort;
-    private AppView app;
     private int counter;
+    private int retryCounter;
     private boolean startRead;
     private static int MAX_FRAME_USB = 7;
     private static int MAX_FRAME_COM = 9;
+    private static int MAX_READ_RETRY = 100;
 
 
-    public ComReadWriteCore(CommConnector comm)
+    public ComReadWriteCore(CommConnector com)
     {
-        app = AppView.getInstance();
-        comPort = comm;
+        comPort = com;
         counter = 0;
         startRead = false;
+        retryCounter = 0;
     }
-    
+
+    public void setComPort(CommConnector comm)
+    {
+        comPort = comm;
+    }
+
+    /**
+     * This method should be overriden by subclasses
+     */
+    @Override
     public void run() {
-
-      /*  int readData = 0;
-        switch(GlobalVariables.HARDWARE_SETTING)
-        {
-            case 1:
-                readComData(readData);
-                break;
-            case 2:
-                readUsbData(readData);
-                break;
-        }  */
     }
 
-    public boolean writeUsbData(int data)
+    public boolean writeUsbData()
     {
         boolean result = true;
         if(GlobalVariables.START_COM_WRITE)
-        {
-            byte[] sendData = null;
-            
-            sendData[0] = (byte)GlobalVariables.writeDataUsb.getFramestart();
-            sendData[1] = (byte)GlobalVariables.writeDataUsb.getCommand();
-            sendData[2] = (byte)GlobalVariables.writeDataUsb.getData1LSB();
-            sendData[3] = (byte)GlobalVariables.writeDataUsb.getData1MSB();
-            sendData[4] = (byte)GlobalVariables.writeDataUsb.getData2();
-            sendData[5] = (byte)GlobalVariables.writeDataUsb.getCs();
-            sendData[6] = (byte)GlobalVariables.writeDataUsb.getFrameEnd();
-
-            result = comPort.write(sendData);
+        {            
+            result = comPort.write(GlobalVariables.writeDataUsb.getBytes());
             GlobalVariables.START_COM_WRITE = false;
+            GlobalVariables.WRITE_FINISH = true;
         }
         
         return result;
     }
 
-    public boolean writeComData(int data)
+    public boolean writeComData()
     {
         boolean result = true;
         if(GlobalVariables.START_COM_WRITE)
         {
-            byte[] sendData = null;
-
-            sendData[0] = (byte)GlobalVariables.writeDataCom.getFramestart();
-            sendData[1] = (byte)GlobalVariables.writeDataCom.getCommand();
-            sendData[2] = (byte)GlobalVariables.writeDataCom.getAddressLSB();
-            sendData[3] = (byte)GlobalVariables.writeDataCom.getAddressMSB();
-            sendData[4] = (byte)GlobalVariables.writeDataCom.getData1LSB();
-            sendData[5] = (byte)GlobalVariables.writeDataCom.getData1MSB();
-            sendData[6] = (byte)GlobalVariables.writeDataCom.getData2();
-            sendData[7] = (byte)GlobalVariables.writeDataCom.getCs();
-            sendData[8] = (byte)GlobalVariables.writeDataCom.getFrameEnd();
-
-            result = comPort.write(sendData);
+            result = comPort.write(GlobalVariables.writeDataCom.getBytes());
             GlobalVariables.START_COM_WRITE = false;
+            GlobalVariables.WRITE_FINISH = true;
         }
 
         return result;
     }
     
-    public void readUsbData(int readData)
+    public void readUsbData()
     {
-        if(GlobalVariables.START_COM_READ)
+        counter = 0;
+        startRead = false;
+        retryCounter = 0;
+        while(GlobalVariables.START_COM_READ)
         {
-            readData = comPort.read();
-            if(GlobalVariables.FRAME_START == readData && false == startRead)
+            byte readBuffer[] = new byte[MAX_FRAME_USB];
+            int length = comPort.read(readBuffer);
+
+            GlobalVariables.START_COM_READ = false;
+            GlobalVariables.READ_FINISH = true;
+
+            
+           /* if(GlobalVariables.FRAME_START == readData && false == startRead)
             {
                 startRead = true;
                 counter++;
@@ -108,7 +95,7 @@ public class ComReadWriteCore implements Runnable{
                 counter = 0;
                 GlobalVariables.readDataUsb.setFrameEnd(readData);
                 GlobalVariables.READ_FINISH = true;
-                GlobalVariables.ADDRESS = 0;
+                GlobalVariables.START_COM_READ = false;
             }
 
             if(true == startRead)
@@ -141,24 +128,100 @@ public class ComReadWriteCore implements Runnable{
                         break;
                 }
             }
+            else
+            {                
+                if(retryCounter == MAX_READ_RETRY)
+                {
+                    GlobalVariables.readDataCom.clearData();
+                    GlobalVariables.START_COM_READ = false;
+                    GlobalVariables.READ_FINISH = true;
+                }
+            }
 
             if(counter > MAX_FRAME_USB)
             {
                 counter = 0;
                 startRead = false;
                 GlobalVariables.START_COM_READ = false;
-                GlobalVariables.READ_FINISH = true;
-                GlobalVariables.ADDRESS = 0;
-            }
+                GlobalVariables.READ_FINISH = true;                
+            }*/
         }
     }
 
-    public void readComData(int readData)
+    public void readComData()
     {
-        if(GlobalVariables.START_COM_READ)
+        counter = 0;
+        startRead = false;
+        retryCounter = 0;
+        while(GlobalVariables.START_COM_READ)
         {
-            readData = comPort.read();
-            if(GlobalVariables.FRAME_START == readData && false == startRead)
+            byte readBuffer[] = new byte[MAX_FRAME_COM];
+            int length = comPort.read(readBuffer);
+            boolean error = false;
+
+            for(int index=0; index < length; index++)
+            {
+                int data = (readBuffer[index] & 0xFF);                
+                switch(index)
+                {
+                    case 0:
+                        if(GlobalVariables.FRAME_START == data)
+                        {
+                            GlobalVariables.readDataCom.setFrameStart(data);
+                        }
+                        else
+                        {
+                            error = true;
+                        }
+                        break;                        
+                    case 1:
+                        if(GlobalVariables.DATA_FROM_DEVICE == data)
+                        {
+                            GlobalVariables.readDataCom.setCommand(data);
+                        }
+                        else
+                        {
+                            error = true;
+                        }                        
+                        break;
+                    case 2:
+                       
+                        GlobalVariables.readDataCom.setAddressLSB(data);
+                        break;
+                    case 3:
+                        GlobalVariables.readDataCom.setAddressMSB(data);
+                        break;
+                    case 4:                         
+                        GlobalVariables.readDataCom.setData1LSB(data);
+                        break;
+                    case 5:                         
+                        GlobalVariables.readDataCom.setData1MSB(data);
+                        break;
+                    case 6:
+                        GlobalVariables.readDataCom.setData2(data);
+                        break;
+                    case 7:
+                        GlobalVariables.readDataCom.setCs(data);
+                        if(GlobalVariables.readDataCom.readError())
+                        {
+                            GlobalVariables.readErrorAddress.add(GlobalVariables.ADDRESS);
+                        }
+                        break;
+                    case 8:
+                        GlobalVariables.readDataCom.setFrameEnd(data);
+                        break;
+                }
+                if(error)
+                {
+                    GlobalVariables.readDataCom.clearData();
+                    System.out.println("READ ERROR.");
+                }
+            }
+
+            GlobalVariables.START_COM_READ = false;
+            GlobalVariables.READ_FINISH = true;
+                
+            /*if(GlobalVariables.FRAME_START == readData && false == startRead)
             {
                 startRead = true;
                 counter++;
@@ -170,7 +233,7 @@ public class ComReadWriteCore implements Runnable{
                 counter = 0;
                 GlobalVariables.readDataCom.setFrameEnd(readData);
                 GlobalVariables.READ_FINISH = true;
-                GlobalVariables.ADDRESS = 0;
+                GlobalVariables.START_COM_READ = false;
             }
 
             if(true == startRead)
@@ -211,14 +274,23 @@ public class ComReadWriteCore implements Runnable{
                         break;
                 }
             }
+            else
+            {
+                retryCounter++;               
+                if(retryCounter == MAX_READ_RETRY)
+                {
+                    GlobalVariables.readDataCom.clearData();
+                    GlobalVariables.START_COM_READ = false;
+                    GlobalVariables.READ_FINISH = true;
+                }
+            }*/
 
             if(counter > MAX_FRAME_COM)
             {
                 counter = 0;
                 startRead = false;
                 GlobalVariables.START_COM_READ = false;
-                GlobalVariables.READ_FINISH = true;
-                GlobalVariables.ADDRESS = 0;
+                GlobalVariables.READ_FINISH = true;                
             }
         }
     }

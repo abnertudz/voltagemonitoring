@@ -6,6 +6,7 @@
 package datacollector.wizard.data;
 
 import datacollector.com.data.ComConnectData;
+import datacollector.device.data.DataSamplerDevice;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class SetupWizardData {
     private String computerName;
     private String macAddress;
     private ArrayList<ComConnectData> comData;
-    private ArrayList<Object[][]> deviceSettings;
+    private ArrayList<DataSamplerDevice> deviceSettings;
     private String readInterval;
     private String deviceSleepTime;
 
@@ -26,7 +27,7 @@ public class SetupWizardData {
         computerName = null;
         macAddress = null;
         comData = new ArrayList<ComConnectData>();
-        deviceSettings = new ArrayList<Object[][]>();
+        deviceSettings = new ArrayList<DataSamplerDevice>();
         readInterval = null;
         deviceSleepTime = null;
     }
@@ -81,12 +82,12 @@ public class SetupWizardData {
         return comData;
     }
 
-    public void setDeviceSettings(ArrayList<Object[][]> data)
+    public void setDeviceSettings(ArrayList<DataSamplerDevice> data)
     {
         deviceSettings = data;
     }
 
-    public ArrayList<Object[][]> getDeviceSettings()
+    public ArrayList<DataSamplerDevice> getDeviceSettings()
     {
         return deviceSettings;
     }

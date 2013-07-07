@@ -283,6 +283,7 @@ public class ViewCore extends JFrame {
         );
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.setFont(new java.awt.Font("Arial", 0, 12));
 
         dataTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -337,7 +338,7 @@ public class ViewCore extends JFrame {
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,14 +357,14 @@ public class ViewCore extends JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -374,11 +375,11 @@ public class ViewCore extends JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 745, Short.MAX_VALUE)
+            .addGap(0, 735, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+            .addGap(0, 503, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Block View", jPanel4);
@@ -387,11 +388,11 @@ public class ViewCore extends JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 745, Short.MAX_VALUE)
+            .addGap(0, 735, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+            .addGap(0, 503, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Graphs", jPanel2);
@@ -400,11 +401,11 @@ public class ViewCore extends JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 745, Short.MAX_VALUE)
+            .addGap(0, 735, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+            .addGap(0, 503, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Logs", jPanel6);
@@ -436,69 +437,87 @@ public class ViewCore extends JFrame {
         );
 
         jMenu1.setText("File");
+        jMenu1.setFont(new java.awt.Font("Arial", 0, 12));
 
+        importMenu.setFont(new java.awt.Font("Arial", 0, 12));
         importMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/import_menu.png"))); // NOI18N
         importMenu.setMnemonic('O');
-        importMenu.setText("Import");
+        importMenu.setText("Import      ");
         importMenu.setToolTipText("Open file");
         jMenu1.add(importMenu);
 
+        exportMenu.setFont(new java.awt.Font("Arial", 0, 12));
         exportMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export_menu.png"))); // NOI18N
         exportMenu.setText("Export");
         jMenu1.add(exportMenu);
         jMenu1.add(jSeparator1);
 
+        printMenu.setFont(new java.awt.Font("Arial", 0, 12));
         printMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print_menu.png"))); // NOI18N
         printMenu.setText("Print");
         jMenu1.add(printMenu);
 
+        jMenuItem4.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem4.setText("Exit");
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("View");
+        jMenu2.setFont(new java.awt.Font("Arial", 0, 12));
 
         jMenu6.setText("Toolbars");
+        jMenu6.setFont(new java.awt.Font("Arial", 0, 12));
 
+        jMenuItem5.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem5.setText("Status bar");
         jMenu6.add(jMenuItem5);
 
+        jMenuItem6.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem6.setText("Alert bar");
         jMenu6.add(jMenuItem6);
 
+        jMenuItem7.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem7.setText("Actions bar");
         jMenu6.add(jMenuItem7);
 
         jMenu2.add(jMenu6);
 
         jMenu8.setText("Tabs");
+        jMenu8.setFont(new java.awt.Font("Arial", 0, 12));
 
+        jMenuItem17.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem17.setText("Monitor");
         jMenu8.add(jMenuItem17);
 
+        jMenuItem20.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem20.setText("Logs");
         jMenu8.add(jMenuItem20);
 
         jMenu2.add(jMenu8);
         jMenu2.add(jSeparator3);
 
+        jMenuItem16.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem16.setText("Full Screen");
         jMenu2.add(jMenuItem16);
 
         jMenuBar1.add(jMenu2);
 
         jMenu7.setText("Connect");
+        jMenu7.setFont(new java.awt.Font("Arial", 0, 12));
 
+        autoDetectMenu.setFont(new java.awt.Font("Arial", 0, 12));
         autoDetectMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/autodetect_menu.png"))); // NOI18N
         autoDetectMenu.setText("Auto Detect");
         jMenu7.add(autoDetectMenu);
 
+        connectMenu.setFont(new java.awt.Font("Arial", 0, 12));
         connectMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/port_menu.png"))); // NOI18N
         connectMenu.setText("Configure COM");
         jMenu7.add(connectMenu);
         jMenu7.add(jSeparator4);
 
+        disconnectMenu.setFont(new java.awt.Font("Arial", 0, 12));
         disconnectMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/disconnect_menu.png"))); // NOI18N
         disconnectMenu.setText("Disconnect");
         jMenu7.add(disconnectMenu);
@@ -506,47 +525,60 @@ public class ViewCore extends JFrame {
         jMenuBar1.add(jMenu7);
 
         configureMenu.setText("Configure");
+        configureMenu.setFont(new java.awt.Font("Arial", 0, 12));
 
+        setupWizardMenu.setFont(new java.awt.Font("Arial Unicode MS", 0, 12));
         setupWizardMenu.setText("Setup Wizard");
         configureMenu.add(setupWizardMenu);
         configureMenu.add(jSeparator7);
 
+        deviceSettingMenu.setFont(new java.awt.Font("Arial Unicode MS", 0, 12));
         deviceSettingMenu.setText("Device Settings");
         configureMenu.add(deviceSettingMenu);
 
+        jMenuItem2.setFont(new java.awt.Font("Arial Unicode MS", 0, 12));
         jMenuItem2.setText("Preferences");
         configureMenu.add(jMenuItem2);
 
         jMenuBar1.add(configureMenu);
 
         startMenu.setText("Run");
+        startMenu.setFont(new java.awt.Font("Arial", 0, 12));
 
+        jMenuItem13.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/start_menu.png"))); // NOI18N
         jMenuItem13.setText("Start Logging");
         startMenu.add(jMenuItem13);
 
+        stopMenu.setFont(new java.awt.Font("Arial", 0, 12));
         stopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stop_menu.png"))); // NOI18N
         stopMenu.setText("Stop Logging");
         startMenu.add(stopMenu);
         startMenu.add(jSeparator5);
 
+        jMenuItem21.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem21.setText("View Logs");
         startMenu.add(jMenuItem21);
 
         jMenuBar1.add(startMenu);
 
         jMenu3.setText("Tools");
+        jMenu3.setFont(new java.awt.Font("Arial", 0, 12));
 
+        jMenuItem10.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem10.setText("Read Address");
         jMenu3.add(jMenuItem10);
 
+        jMenuItem12.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem12.setText("Write Address");
         jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Help");
+        jMenu4.setFont(new java.awt.Font("Arial", 0, 12));
 
+        jMenuItem11.setFont(new java.awt.Font("Arial", 0, 12));
         jMenuItem11.setText("About");
         jMenu4.add(jMenuItem11);
 
@@ -571,7 +603,7 @@ public class ViewCore extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

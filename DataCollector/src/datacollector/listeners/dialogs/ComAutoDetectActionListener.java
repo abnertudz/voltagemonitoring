@@ -34,7 +34,7 @@ public class ComAutoDetectActionListener implements ActionListener{
             {
                 case 1:
                     dialog.setVisible(false);
-                    GlobalVariables.comConnections.add(comm);
+                    GlobalVariables.comConnection = comm;
                     System.out.println("Success");
                     break;
                 case 2:

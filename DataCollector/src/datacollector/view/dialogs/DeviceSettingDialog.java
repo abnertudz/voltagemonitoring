@@ -29,9 +29,11 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class DeviceSettingDialog extends SystemDialogCore {
 
-    private final double MINIMUM_VOLTAGE = 0;
-    private final double MAX_VOLTAGE = 100000;
+    private final double MINIMUM_VOLTAGE = -300;
+    private final double MAX_VOLTAGE = 1225;
     private final double STEP_VOLTAGE = 0.1;
+    private final double DEFAULT_VOLTAGE = 0;
+
 
     private final int MINIMUM_ADDRESS = 0;
     private final int MAX_ADDRESS = 100000;
@@ -56,9 +58,9 @@ public class DeviceSettingDialog extends SystemDialogCore {
         Dimension dilaogSize = this.getSize();
         this.setLocation((int)(viewSize.getWidth()/2),(int)((viewSize.getHeight()/2) - (dilaogSize.getHeight()/2)));
 
-        SpinnerNumberModel mininumVoltageModel = new SpinnerNumberModel(MINIMUM_VOLTAGE,MINIMUM_VOLTAGE,MAX_VOLTAGE,STEP_VOLTAGE);
+        SpinnerNumberModel mininumVoltageModel = new SpinnerNumberModel(DEFAULT_VOLTAGE,MINIMUM_VOLTAGE,MAX_VOLTAGE,STEP_VOLTAGE);
         minimumVoltage.setModel(mininumVoltageModel);
-        SpinnerNumberModel maxVoltageModel = new SpinnerNumberModel(MINIMUM_VOLTAGE,MINIMUM_VOLTAGE,MAX_VOLTAGE,STEP_VOLTAGE);
+        SpinnerNumberModel maxVoltageModel = new SpinnerNumberModel(DEFAULT_VOLTAGE,MINIMUM_VOLTAGE,MAX_VOLTAGE,STEP_VOLTAGE);
         maxVoltage.setModel(maxVoltageModel);
 
         SpinnerNumberModel fromDeviceModel = new SpinnerNumberModel(MINIMUM_ADDRESS,MINIMUM_ADDRESS,MAX_ADDRESS,STEP_ADDRESS);

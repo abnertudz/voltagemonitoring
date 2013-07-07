@@ -189,10 +189,11 @@
         <Component class="javax.swing.JComboBox" name="comBaudRate">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="4">
                 <StringItem index="0" value="256000"/>
                 <StringItem index="1" value="128000"/>
                 <StringItem index="2" value="57600"/>
+                <StringItem index="3" value="38400"/>
               </StringArray>
             </Property>
           </Properties>

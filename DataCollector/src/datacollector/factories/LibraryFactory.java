@@ -7,7 +7,6 @@ package datacollector.factories;
 
 import datacollector.libraries.*;
 import datacollector.core.FactoryCore;
-import java.io.File;
 
 /**
  *
@@ -15,39 +14,61 @@ import java.io.File;
  */
 public class LibraryFactory extends FactoryCore{
 
-    private static final LibraryFactory self = new LibraryFactory();
-    
-    private static File classFile;
-    private static String classPostFix;
+    // static instances of dialog objects
+    private static final StringLibrary string = new StringLibrary();
+    private static final SerialPortLibrary serial = new SerialPortLibrary();
+
 
     public LibraryFactory()
     {
         super();
-        LibraryFactory.module = "libraries";
-        classFile = null;
-        classPostFix = "Library";
     }
 
-    public static LibraryFactory newInstance(String className)
+    private enum Libraries
     {
-        classFile = new File(DialogFactory.rootDir + LibraryFactory.module + File.pathSeparator + className + classPostFix);
-        if(!classFile.exists())
+        String,SerialPort;
+    }
+
+    public static Object newInstance(String className)
+    {
+        Libraries libs = Libraries.valueOf(className);
+        Object newInstance = null;
+        switch(libs)
         {
-            LibraryFactory.errorLog(new Exception(),"msg");
-            return null;
+            case String:
+                newInstance = new StringLibrary();
+                break;
+            case SerialPort:
+                newInstance = new SerialPortLibrary();
+                break;            
+            default:
+                String msg = className + "Dialog cannot be found in datacollector.view.dialogs.* package";
+                LibraryFactory.errorLog(new Exception(),msg);
+                break;
         }
 
-        return new LibraryFactory();
+        return newInstance;
     }
 
-    public static LibraryFactory newInstance(String className, String modules)
+    public static Object getInstance(String className)
     {
-        return new LibraryFactory();
-    }
+        Libraries libs = Libraries.valueOf(className);
+        Object instance = null;
+        switch(libs)
+        {
+            case String:
+                instance = string;
+                break;
+            case SerialPort:
+                instance = serial;
+                break;
+            default:
+                String msg = className + "Dialog cannot be found in datacollector.view.dialogs.* package";
+                LibraryFactory.errorLog(new Exception(),msg);
+                break;
+        }
 
-    public static LibraryFactory getInstance()
-    {
-        return self;
+        return instance;
     }
 
 }

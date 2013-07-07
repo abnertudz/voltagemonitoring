@@ -13,27 +13,27 @@ import datacollector.globals.GlobalVariables;
  *
  * @author Abner
  */
-public class ComReaderThread extends ComReadWriteCore{
+public class ComWriterThread extends ComReadWriteCore{
 
-    public ComReaderThread(CommConnector comm)
+    public ComWriterThread(CommConnector comm)
     {
         super(comm);
     }
-    
+
     @Override
     public void run() {
 
         while(true)
         {
-            if(GlobalVariables.START_COM_READ && !interrupted())
+            if(GlobalVariables.START_COM_WRITE && !interrupted())
             {
                 switch(GlobalVariables.HARDWARE_SETTING)
                 {
                     case 1:
-                        readComData();
+                        writeComData();
                         break;
                     case 2:
-                        readUsbData();
+                        writeUsbData();
                         break;
                 }
             }

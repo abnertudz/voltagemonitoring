@@ -166,7 +166,7 @@ public class ComSettingDialog extends SystemDialogCore {
 
         comPort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COM1", "COM2", "COM3", "COM4" }));
 
-        comBaudRate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "256000", "128000", "57600" }));
+        comBaudRate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "256000", "128000", "57600", "38400" }));
 
         comParityBit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NONE", "ODD", "EVEN", "MARK", "SPACE" }));
 

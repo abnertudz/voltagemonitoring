@@ -6,6 +6,8 @@
 package datacollector.listeners.actiontoolbar;
 
 import datacollector.factories.DialogFactory;
+import datacollector.factories.ThreadFactory;
+import datacollector.globals.GlobalVariables;
 import datacollector.view.dialogs.ComAutoDetectDialog;
 import datacollector.view.dialogs.ComDisconnectDialog;
 import datacollector.view.dialogs.ComSettingDialog;
@@ -46,8 +48,26 @@ public class ActionToolbarActionListener implements ActionListener{
             case Print:
                 break;
             case Start:
+                GlobalVariables.START_INTERVAL_COUNTER = true;
+                Thread interval = ThreadFactory.getInstance("IntervalCounter");
+                if(!interval.isAlive())
+                {
+                    interval.start();
+                }
+                
+                GlobalVariables.START_MONITORING = true;
+                Thread monitorStart = ThreadFactory.getInstance("MonitorDevices");
+                if(!monitorStart.isAlive())
+                {
+                    monitorStart.start();
+                }
+
+                
                 break;
             case Stop:
+                Thread monitorStop = ThreadFactory.getInstance("MonitorDevices");
+                GlobalVariables.START_MONITORING = false;
+                monitorStop.interrupt();
                 break;
         }
     }

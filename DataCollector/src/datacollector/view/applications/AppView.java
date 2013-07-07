@@ -5,7 +5,9 @@
 
 package datacollector.view.applications;
 import datacollector.core.ViewCore;
+import datacollector.device.data.DataSamplerDevice;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -63,7 +65,7 @@ public class AppView extends ViewCore{
         return dataTable;
     }
 
-    public void populateDataTable(ArrayList<Object[][]> data)
+    public void populateDataTable(ArrayList<DataSamplerDevice> data)
     {
         DefaultTableModel tableModel = (DefaultTableModel)dataTable.getModel();
         Iterator iterate = data.iterator();
@@ -71,10 +73,29 @@ public class AppView extends ViewCore{
 
         while(iterate.hasNext())
         {
-            Object[][] obj = (Object[][]) iterate.next();          
-            Object[] newRow = {false,obj[countX][0],obj[countX][1],obj[countX][2],obj[countX][3],"0","0","No",""};            
+            DataSamplerDevice device = (DataSamplerDevice) iterate.next();
+            Object[] newRow = {false,device.getDeviceAddress(),device.getDeviceBlock(),device.getDeviceMinVoltage(),device.getDeviceMaxVoltage(),"0","0","No",""};
             tableModel.addRow(newRow); 
             countX++;
         }
+    }
+
+    public void updateDataTable(HashMap dataMap)
+    {
+        DefaultTableModel tableModel = (DefaultTableModel)dataTable.getModel();
+        int row = tableModel.getRowCount();
+        Object address = 0;
+
+        for(int x=0; x<row; x++)
+        {
+           address = tableModel.getValueAt(x, 1);
+           DataSamplerDevice device = (DataSamplerDevice) dataMap.get((Integer)address);
+           System.out.println("Device Voltage: " + device.getDeviceVoltage());
+           if(null != device)
+           {               
+               tableModel.setValueAt(device.getDeviceVoltage(), x, 5);
+           }
+        }
+        
     }
 }

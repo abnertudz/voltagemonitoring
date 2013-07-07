@@ -5,6 +5,7 @@
 
 package datacollector.listeners.dialogs;
 
+import datacollector.device.data.DataSamplerDevice;
 import datacollector.factories.DialogFactory;
 import datacollector.view.dialogs.DeviceSettingDialog;
 import datacollector.globals.GlobalVariables;
@@ -12,7 +13,6 @@ import datacollector.view.applications.AppView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +37,7 @@ public class DeviceSettingActionListener implements ActionListener{
         switch(command)
         {
             case okButton:
-                ArrayList<Object[][]> dataTable = getTableData(dialog.getDeviceSettingTable());
+                ArrayList<DataSamplerDevice> dataTable = getTableData(dialog.getDeviceSettingTable());
                 GlobalVariables.configData.setDeviceSettings(dataTable);
                 GlobalVariables.configData.setDeviceSleepTime(dialog.getSleepTime().getText());
                 GlobalVariables.configData.setReadInterval(dialog.getReadInterval().getText());
@@ -90,24 +90,23 @@ public class DeviceSettingActionListener implements ActionListener{
         
     }
 
-    private ArrayList<Object[][]> getTableData(JTable table)
+    private ArrayList<DataSamplerDevice> getTableData(JTable table)
     {
-        ArrayList<Object[][]> tableData = new ArrayList<Object[][]>();
+        ArrayList<DataSamplerDevice> deviceData = new ArrayList<DataSamplerDevice>();
         DefaultTableModel tableModel = (DefaultTableModel)table.getModel();
         int row = tableModel.getRowCount();
-        int col = tableModel.getColumnCount();
 
         for(int x=0; x < row; x++)
         {
-            Object[][] data = new Object[row][col];
-            for(int y=0; y < col; y++)
-            {
-                data[x][y] = tableModel.getValueAt(x, y);
-            }
-            tableData.add(data);
+            DataSamplerDevice device = new DataSamplerDevice();
+            device.setDeviceAddress((Integer)tableModel.getValueAt(x, 0));
+            device.setDeviceBlock((String)tableModel.getValueAt(x, 1));
+            device.setDeviceMinVoltage((Double)tableModel.getValueAt(x, 2));
+            device.setDeviceMaxVoltage((Double)tableModel.getValueAt(x, 3));
+            deviceData.add(device);
         }
         
-        return tableData;
+        return deviceData;
     }
 
 }
