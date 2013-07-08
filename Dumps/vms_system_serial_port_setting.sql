@@ -18,31 +18,33 @@ USE `vms`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `device_reading`
+-- Table structure for table `system_serial_port_setting`
 --
 
-DROP TABLE IF EXISTS `device_reading`;
+DROP TABLE IF EXISTS `system_serial_port_setting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `device_reading` (
-  `device_reading_id` int(13) unsigned NOT NULL AUTO_INCREMENT,
-  `device_reading_voltage` double NOT NULL DEFAULT '0',
-  `device_reading_current` double NOT NULL DEFAULT '0',
-  `device_reading_date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `device_reading_last_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `device_status_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `device_id` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`device_reading_id`)
+CREATE TABLE `system_serial_port_setting` (
+  `system_serial_port_setting_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `system_serial_port_setting_com` varchar(255) NOT NULL DEFAULT '',
+  `system_serial_port_setting_date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `system_serial_port_setting_last_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `serial_port_baud_rate_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `serial_port_parity_bit_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `serial_port_data_bit_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `serial_port_stop_bit_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `serial_port_buffer_size_id` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`system_serial_port_setting_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `device_reading`
+-- Dumping data for table `system_serial_port_setting`
 --
 
-LOCK TABLES `device_reading` WRITE;
-/*!40000 ALTER TABLE `device_reading` DISABLE KEYS */;
-/*!40000 ALTER TABLE `device_reading` ENABLE KEYS */;
+LOCK TABLES `system_serial_port_setting` WRITE;
+/*!40000 ALTER TABLE `system_serial_port_setting` DISABLE KEYS */;
+/*!40000 ALTER TABLE `system_serial_port_setting` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-08  9:45:08
+-- Dump completed on 2013-07-08  9:45:15
