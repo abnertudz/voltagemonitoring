@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : device_status.hbm.xml
+    Created on : July 8, 2013, 9:12 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.DeviceStatus" table="device_status">
+      <meta attribute="class-description">
+         This class contains the device status information.
+      </meta>
+      <id name="id" type="int" column="device_status_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="device_status_date_created" type="date"/>
+      <property name="lastModified" column="device_status_last_modified" type="date"/>
+      <property name="value" column="device_status_value" type="string"/>
+
+   </class>
+</hibernate-mapping>

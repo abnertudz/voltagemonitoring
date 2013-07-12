@@ -12,17 +12,21 @@ package datacollector.device.data;
 public class DataSamplerDevice {
 
     private int deviceAddress;
-    private String deviceBlock;
+    private int deviceBlock;
     private double minVoltage;
     private double maxVoltage;
     private double voltage;
+    private String deviceStatus;
+    private String deviceName;
 
     public DataSamplerDevice()
     {
         deviceAddress = 0;
-        deviceBlock = null;
+        deviceBlock = 0;
         minVoltage = 0;
         maxVoltage = 0;
+        deviceStatus = null;
+        deviceName = null;
     }
 
     public int getDeviceAddress()
@@ -30,17 +34,25 @@ public class DataSamplerDevice {
         return deviceAddress;
     }
 
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String name) {
+        deviceName = name;
+    }
+
     public void setDeviceAddress(int data)
     {
         deviceAddress = data;
     }
 
-    public String getDeviceBlock()
+    public int getDeviceBlock()
     {
         return deviceBlock;
     }
 
-    public void setDeviceBlock(String data)
+    public void setDeviceBlock(int data)
     {
         deviceBlock = data;
     }
@@ -73,6 +85,16 @@ public class DataSamplerDevice {
     public void setDeviceVoltage(double data)
     {
         voltage = data;
+    }
+
+    public void setDeviceStatus(String data)
+    {
+        deviceStatus = data;
+    }
+
+    public String getDeviceStatus()
+    {
+        return deviceStatus;
     }
 
 }

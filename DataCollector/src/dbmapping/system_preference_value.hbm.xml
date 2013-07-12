@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : system_preference_value.xml
+    Created on : July 10, 2013, 11:05 AM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SystemPreferenceValue" table="system_preference_value">
+      <meta attribute="class-description">
+         This class contains system's preference values.
+      </meta>
+      <id name="id" type="int" column="system_preference_value_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="system_preference_value_date_created" type="date"/>
+      <property name="lastModified" column="system_preference_value_last_modified" type="date"/>
+      <property name="value" column="system_preference_value" type="string"/>
+      <property name="preferenceId" column="system_preference_id" type="int"/>
+
+   </class>
+</hibernate-mapping>

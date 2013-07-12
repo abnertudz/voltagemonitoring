@@ -17,6 +17,7 @@ public class LibraryFactory extends FactoryCore{
     // static instances of dialog objects
     private static final StringLibrary string = new StringLibrary();
     private static final SerialPortLibrary serial = new SerialPortLibrary();
+    private static final DateTimeLibrary date = new DateTimeLibrary();
 
 
     public LibraryFactory()
@@ -26,7 +27,7 @@ public class LibraryFactory extends FactoryCore{
 
     private enum Libraries
     {
-        String,SerialPort;
+        String,SerialPort,DateTime;
     }
 
     public static Object newInstance(String className)
@@ -40,7 +41,10 @@ public class LibraryFactory extends FactoryCore{
                 break;
             case SerialPort:
                 newInstance = new SerialPortLibrary();
-                break;            
+                break;
+            case DateTime:
+                newInstance = new DateTimeLibrary();
+                break; 
             default:
                 String msg = className + "Dialog cannot be found in datacollector.view.dialogs.* package";
                 LibraryFactory.errorLog(new Exception(),msg);
@@ -62,6 +66,9 @@ public class LibraryFactory extends FactoryCore{
             case SerialPort:
                 instance = serial;
                 break;
+            case DateTime:
+                instance = date;
+                break; 
             default:
                 String msg = className + "Dialog cannot be found in datacollector.view.dialogs.* package";
                 LibraryFactory.errorLog(new Exception(),msg);

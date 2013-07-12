@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : hibernate.cfg.xml
+    Created on : July 8, 2013, 8:22 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="show_sql">true</property>
+        <property name="connection.pool_size">1</property>  
+
+        <!-- database config -->
+       <property name="hibernate.connection.url">jdbc:mysql://localhost/vms</property>
+       <property name="hibernate.connection.username">root</property>
+       <property name="hibernate.connection.password">McShit</property>
+        
+
+        <!-- List of XML mapping files -->
+        <mapping resource="dbmapping/device.hbm.xml"/>
+        <mapping resource="dbmapping/device_setting.hbm.xml"/>
+        <mapping resource="dbmapping/device_block.hbm.xml"/>
+        <mapping resource="dbmapping/device_log.hbm.xml"/>
+        <mapping resource="dbmapping/device_reading.hbm.xml"/>       
+        <mapping resource="dbmapping/device_status.hbm.xml"/>
+        <!--mapping resource="dbmapping/device_setting.hbm.xml"/-->
+        
+        <mapping resource="dbmapping/serial_port_baud_rate.hbm.xml"/>
+        <mapping resource="dbmapping/serial_port_buffer_size.hbm.xml"/>
+        <mapping resource="dbmapping/serial_port_data_bit.hbm.xml"/>
+        <mapping resource="dbmapping/serial_port_parity_bit.hbm.xml"/>
+        <mapping resource="dbmapping/serial_port_stop_bit.hbm.xml"/>
+        <mapping resource="dbmapping/system_default_setting.hbm.xml"/>
+        <mapping resource="dbmapping/system_default_setting_value.hbm.xml"/>
+        <mapping resource="dbmapping/system_preference.hbm.xml"/>
+        <mapping resource="dbmapping/system_preference_value.hbm.xml"/>
+        <mapping resource="dbmapping/system_serial_port_setting.hbm.xml"/>
+
+
+    </session-factory>
+</hibernate-configuration>

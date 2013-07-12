@@ -29,7 +29,6 @@ CREATE TABLE `device_status` (
   `device_status_date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `device_status_last_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `device_status_value` varchar(255) NOT NULL DEFAULT '',
-  `device_id` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`device_status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-08  9:45:05
+-- Dump completed on 2013-07-12 13:26:06

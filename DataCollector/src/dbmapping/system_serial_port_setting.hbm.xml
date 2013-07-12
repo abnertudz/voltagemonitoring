@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : system_serial_port_setting.hbm.xml
+    Created on : July 8, 2013, 9:15 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SystemSerialPortSetting" table="system_serial_port_setting">
+      <meta attribute="class-description">
+         This class contains the system's serial port setting.
+      </meta>
+      <id name="id" type="int" column="system_serial_port_setting_id">
+         <generator class="native"/>
+      </id>
+      
+      <property name="dateCreated" column="system_serial_port_setting_date_created" type="date"/>
+      <property name="lastModified" column="system_serial_port_setting_last_modified" type="date"/>
+      <property name="com" column="system_serial_port_setting_com" type="string"/>
+      <property name="baudRateId" column="serial_port_baud_rate_id" type="int"/>
+      <property name="parityBitId" column="serial_port_parity_bit_id" type="int"/>
+      <property name="dataBitId" column="serial_port_data_bit_id" type="int"/>
+      <property name="stopBitId" column="serial_port_stop_bit_id" type="int"/>
+      <property name="bufferSizeId" column="serial_port_buffer_size_id" type="int"/>
+
+   </class>
+</hibernate-mapping>

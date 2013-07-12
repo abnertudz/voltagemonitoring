@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : system_preference.hbm.xml
+    Created on : July 10, 2013, 11:05 AM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SystemPreference" table="system_preference">
+      <meta attribute="class-description">
+         This class contains the device reading.
+      </meta>
+      <id name="id" type="int" column="system_preference_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="system_preference_date_created" type="date"/>
+      <property name="lastModified" column="system_preference_last_modified" type="date"/>
+      <property name="groupId" column="system_preference_group_id" type="int"/>
+      <property name="name" column="system_preference_name" type="string"/>      
+   </class>
+</hibernate-mapping>
+

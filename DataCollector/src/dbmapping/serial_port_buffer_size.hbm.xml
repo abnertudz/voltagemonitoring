@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+    Document   : serial_port_buffer_size.hbm.xml
+    Created on : July 8, 2013, 9:13 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SerialPortBufferSize" table="serial_port_buffer_size">
+      <meta attribute="class-description">
+         This class contains the serial port buffer size setting.
+      </meta>
+      <id name="id" type="int" column="serial_port_buffer_size_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="serial_port_buffer_size_date_created" type="date"/>
+      <property name="lastModified" column="serial_port_buffer_size_last_modified" type="date"/>
+      <property name="value" column="serial_port_buffer_size_value" type="int"/>
+
+   </class>
+</hibernate-mapping>

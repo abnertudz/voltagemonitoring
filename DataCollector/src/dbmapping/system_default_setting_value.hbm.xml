@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : system_default_setting_value.hbm.xml
+    Created on : July 8, 2013, 9:15 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SystemDefaultSettingValue" table="system_default_setting_value">
+      <meta attribute="class-description">
+         This class contains the system's default settings.
+      </meta>
+      <id name="id" type="int" column="system_default_setting_value_id">
+         <generator class="native"/>
+      </id>
+      <property name="value" column="system_default_setting_value" type="string"/>
+      <property name="dateCreated" column="system_default_setting_value_date_created" type="date"/>
+      <property name="lastModified" column="system_default_setting_value_last_modified" type="date"/>
+      <property name="defaultSettingId" column="system_default_setting_id" type="int"/>
+
+   </class>
+</hibernate-mapping>

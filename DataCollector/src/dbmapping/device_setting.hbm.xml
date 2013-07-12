@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : device_setting.hbm.xml
+    Created on : July 8, 2013, 9:11 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.DeviceSetting" table="device_setting">
+      <meta attribute="class-description">
+         This class contains the device setting.
+      </meta>
+      <id name="id" type="int" column="device_setting_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="device_setting_date_created" type="date"/>
+      <property name="lastModified" column="device_setting_last_modified" type="date"/>
+      <property name="deviceMinValue" column="device_setting_min_value" type="double"/>
+      <property name="deviceMaxValue" column="device_setting_max_value" type="double"/>
+      <property name="deviceId" column="device_id" type="int"/>
+
+   </class>
+</hibernate-mapping>

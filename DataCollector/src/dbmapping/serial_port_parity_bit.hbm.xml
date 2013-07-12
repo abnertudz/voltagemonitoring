@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : serial_port_parity_bit.hbm.xml
+    Created on : July 8, 2013, 9:14 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SerialPortParityBit" table="serial_port_parity_bit">
+      <meta attribute="class-description">
+         This class contains the serial port parity bit setting.
+      </meta>
+      <id name="id" type="int" column="serial_port_parity_bit_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="serial_port_parity_bit_date_created" type="date"/>
+      <property name="lastModified" column="serial_port_parity_bit_last_modified" type="date"/>
+      <property name="value" column="serial_port_parity_bit_value" type="string"/>
+
+   </class>
+</hibernate-mapping>

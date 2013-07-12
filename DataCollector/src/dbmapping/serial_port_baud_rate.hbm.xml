@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : serial_port_baud_rate.hbm.xml
+    Created on : July 8, 2013, 9:12 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.SerialPortBaudRate" table="serial_port_baud_rate">
+      <meta attribute="class-description">
+         This class contains the device status information.
+      </meta>
+      <id name="id" type="int" column="serial_port_baud_rate_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="serial_port_baud_rate_date_created" type="date"/>
+      <property name="lastModified" column="serial_port_baud_rate_last_modified" type="date"/>
+      <property name="value" column="serial_port_baud_rate_value" type="int"/>
+
+   </class>
+</hibernate-mapping>

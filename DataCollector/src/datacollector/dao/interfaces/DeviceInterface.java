@@ -19,14 +19,14 @@ public interface DeviceInterface {
      * @param int deviceAddress
      * @return DataSamplerDevice
      */
-    public DataSamplerDevice readDevice(int deviceAddress);
+    public DataSamplerDevice getDevice(int deviceAddress);
 
     /**
      * Helper method that retrieves multiple devices from database
      * @param int[] deviceAddress
      * @return ArrayList<DataSamplerDevice>
      */
-    public ArrayList<DataSamplerDevice> readDevice(int[] deviceAddress);
+    public ArrayList<DataSamplerDevice> getDevice(int[] deviceAddress);
 
     /**
      * Helper method that deletes a single device record in the database
@@ -55,6 +55,27 @@ public interface DeviceInterface {
      * @return boolean
      */
     public boolean updateDevice(int[] deviceAddress);
+
+    /**
+     * Helper method that adds a single device record in the database
+     * @param int deviceAddress
+     * @return boolean
+     */
+     public int addDevice(int deviceAddress, int blockId, String deviceName, double maxValue, double minValue);
+
+     /**
+     * Helper method that adds a single device record in the database
+     * @param int deviceAddress
+     * @return boolean
+     */
+     public int addDevice(DataSamplerDevice deviceData);
+
+      /**
+     * Helper method that adds a single device record in the database
+     * @param int deviceAddress
+     * @return boolean
+     */
+     public ArrayList<Integer> addDevice(ArrayList<DataSamplerDevice> deviceData);
 
     
 

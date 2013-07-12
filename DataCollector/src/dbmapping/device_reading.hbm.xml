@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : device_reading.xml
+    Created on : July 8, 2013, 9:11 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.DeviceReading" table="device_reading">
+      <meta attribute="class-description">
+         This class contains the device reading.
+      </meta>
+      <id name="id" type="int" column="device_reading_id">
+         <generator class="native"/>
+      </id>
+      <property name="dateCreated" column="device_reading_date_created" type="date"/>
+      <property name="lastModified" column="device_reading_last_modified" type="date"/>
+      <property name="voltage" column="device_reading_voltage" type="double"/>
+      <property name="current" column="device_reading_current" type="double"/>
+      <property name="deviceId" column="device_id" type="int"/>
+      <property name="deviceStatusId" column="device_status_id" type="int"/>
+
+   </class>
+</hibernate-mapping>

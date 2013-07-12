@@ -51,7 +51,6 @@ public class MonitorDevicesThread extends Thread{
                         readValue.setDeviceAddress(device.getDeviceAddress());
                         deviceMap.put(readValue.getDeviceAddress(), readValue);
                         System.out.println("Adress = " + readValue.getDeviceAddress() + " Value = " + readValue.getDeviceVoltage());
-                        //Thread.sleep(1000);
                     }
                     catch(Exception e)
                     {
@@ -60,7 +59,15 @@ public class MonitorDevicesThread extends Thread{
                     columnCount++;
                 }
 
+                // Check wether there's an error
+
+
+                // Save data to  database
+
+                // update GUI
                 app.updateDataTable(deviceMap);
+
+                // update graph
             }
         }
         

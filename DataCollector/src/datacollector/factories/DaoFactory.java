@@ -46,7 +46,7 @@ public class DaoFactory extends FactoryCore{
         return newInstance;
     }
 
-    public static Object gewInstance(String className)
+    public static Object getInstance(String className)
     {
         Daos dao = Daos.valueOf(className);
         Object instance = null;

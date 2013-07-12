@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<!--
+    Document   : device_block.hbm.xml
+    Created on : July 8, 2013, 9:11 PM
+    Author     : Abner
+    Description:
+        Purpose of the document follows.
+-->
+
+<hibernate-mapping>
+   <class name="datacollector.pojos.DeviceBlock" table="device_block">
+      <meta attribute="class-description">
+         This class contains the device block information.
+      </meta>
+      <id name="id" type="int" column="device_block_id">
+         <generator class="native"/>
+      </id>
+      <property name="blockName" column="device_block_name" type="string"/>
+      <property name="dateCreated" column="device_block_date_created" type="date"/>
+      <property name="lastModified" column="device_block_last_modified" type="date"/>
+
+   </class>
+</hibernate-mapping>
+
+
