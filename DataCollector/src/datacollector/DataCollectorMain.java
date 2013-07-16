@@ -23,8 +23,8 @@ public class DataCollectorMain {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
 
-              DeviceDaoImplementation device = (DeviceDaoImplementation) DaoFactory.getInstance("Device");
-              device.addDevice(1, 1, "Example",new Double(1.1),new Double(1.2));
+              //DeviceDaoImplementation device = (DeviceDaoImplementation) DaoFactory.getInstance("Device");
+             // device.addDevice(1, 1, "Example",new Double(1.1),new Double(1.2));
                
                AppView sysView = new AppView();
                sysView.launch();

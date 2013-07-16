@@ -19,8 +19,8 @@ public class DeviceReading implements Serializable{
     private Date lastModified;
     private int deviceStatusId;
     private int deviceId;
-    private int voltage;
-    private int current;
+    private double voltage;
+    private double current;
 
     public DeviceReading()
     {
@@ -107,28 +107,28 @@ public class DeviceReading implements Serializable{
     /**
      * @return the voltage
      */
-    public int getVoltage() {
+    public double getVoltage() {
         return voltage;
     }
 
     /**
      * @param voltage the voltage to set
      */
-    public void setVoltage(int voltage) {
+    public void setVoltage(double voltage) {
         this.voltage = voltage;
     }
 
     /**
      * @return the current
      */
-    public int getCurrent() {
+    public double getCurrent() {
         return current;
     }
 
     /**
      * @param current the current to set
      */
-    public void setCurrent(int current) {
+    public void setCurrent(double current) {
         this.current = current;
     }
 

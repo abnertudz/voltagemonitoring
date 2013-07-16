@@ -18,6 +18,7 @@ public class SystemDefaultSetting implements Serializable{
     private Date dateCreated;
     private Date lastModified;
     private String name;
+    private int group;
 
     public SystemDefaultSetting()
     {
@@ -25,6 +26,7 @@ public class SystemDefaultSetting implements Serializable{
         dateCreated = new Date();
         lastModified = new Date();
         name = null;
+        group = 0;
 
     }
 
@@ -82,6 +84,20 @@ public class SystemDefaultSetting implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the group
+     */
+    public int getGroup() {
+        return group;
+    }
+
+    /**
+     * @param group the group to set
+     */
+    public void setGroup(int group) {
+        this.group = group;
     }
 
 }

@@ -16,6 +16,7 @@ public class DataSamplerDevice {
     private double minVoltage;
     private double maxVoltage;
     private double voltage;
+    private double current;
     private String deviceStatus;
     private String deviceName;
 
@@ -25,6 +26,7 @@ public class DataSamplerDevice {
         deviceBlock = 0;
         minVoltage = 0;
         maxVoltage = 0;
+        current = 0;
         deviceStatus = null;
         deviceName = null;
     }
@@ -95,6 +97,20 @@ public class DataSamplerDevice {
     public String getDeviceStatus()
     {
         return deviceStatus;
+    }
+
+    /**
+     * @return the current
+     */
+    public double getDeviceCurrent() {
+        return current;
+    }
+
+    /**
+     * @param current the current to set
+     */
+    public void setDeviceCurrent(double current) {
+        this.current = current;
     }
 
 }

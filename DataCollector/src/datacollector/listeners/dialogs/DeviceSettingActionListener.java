@@ -100,7 +100,7 @@ public class DeviceSettingActionListener implements ActionListener{
         {
             DataSamplerDevice device = new DataSamplerDevice();
             device.setDeviceAddress((Integer)tableModel.getValueAt(x, 0));
-            device.setDeviceBlock(Integer.parseInt((String)tableModel.getValueAt(x, 1)));
+           // device.setDeviceBlock(Integer.parseInt((String)tableModel.getValueAt(x, 1)));
             device.setDeviceMinVoltage((Double)tableModel.getValueAt(x, 2));
             device.setDeviceMaxVoltage((Double)tableModel.getValueAt(x, 3));
             deviceData.add(device);

@@ -41,6 +41,7 @@
         <mapping resource="dbmapping/system_default_setting.hbm.xml"/>
         <mapping resource="dbmapping/system_default_setting_value.hbm.xml"/>
         <mapping resource="dbmapping/system_preference.hbm.xml"/>
+        <mapping resource="dbmapping/system_preference_group.hbm.xml"/>
         <mapping resource="dbmapping/system_preference_value.hbm.xml"/>
         <mapping resource="dbmapping/system_serial_port_setting.hbm.xml"/>
 

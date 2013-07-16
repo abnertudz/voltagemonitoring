@@ -19,6 +19,7 @@
       <id name="id" type="int" column="system_default_setting_id">
          <generator class="native"/>
       </id>
+      <property name="group" column="system_preference_group" type="int"/>
       <property name="name" column="system_default_setting_name" type="string"/>
       <property name="dateCreated" column="system_default_setting_date_created" type="date"/>
       <property name="lastModified" column="system_default_setting_last_modified" type="date"/>

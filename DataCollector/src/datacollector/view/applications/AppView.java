@@ -6,6 +6,7 @@
 package datacollector.view.applications;
 import datacollector.core.ViewCore;
 import datacollector.device.data.DataSamplerDevice;
+import datacollector.table.panels.ActionToolPanel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -74,7 +75,7 @@ public class AppView extends ViewCore{
         while(iterate.hasNext())
         {
             DataSamplerDevice device = (DataSamplerDevice) iterate.next();
-            Object[] newRow = {false,device.getDeviceAddress(),device.getDeviceBlock(),device.getDeviceMinVoltage(),device.getDeviceMaxVoltage(),"0","0","No",""};
+            Object[] newRow = {false,device.getDeviceAddress(),device.getDeviceBlock(),device.getDeviceMinVoltage(),device.getDeviceMaxVoltage(),"0","0","No",new ActionToolPanel()};
             tableModel.addRow(newRow); 
             countX++;
         }
@@ -90,7 +91,6 @@ public class AppView extends ViewCore{
         {
            address = tableModel.getValueAt(x, 1);
            DataSamplerDevice device = (DataSamplerDevice) dataMap.get((Integer)address);
-           System.out.println("Device Voltage: " + device.getDeviceVoltage());
            if(null != device)
            {               
                tableModel.setValueAt(device.getDeviceVoltage(), x, 5);
