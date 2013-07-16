@@ -28,6 +28,81 @@ public class DeviceDaoImplementation extends DaoCore implements DeviceInterface{
         super();
     }
 
+
+     /**
+     * Helper method that retrieves single device block from database
+     * @param int deviceAddress
+     * @return DataSamplerDevice
+     */
+    public DeviceStatus getDeviceStatus(String name) {
+
+        DeviceStatus toReturn = null;
+        Session session = factory.openSession();
+        Transaction trans = null;
+
+        try
+        {
+            trans = (Transaction) session.beginTransaction();
+
+            List<DeviceStatus> devices = (List<DeviceStatus>) session.createCriteria(DeviceStatus.class).add(Restrictions.eq("value", name));
+            for(DeviceStatus device : devices)
+            {
+                toReturn = device;
+                break;
+            }
+
+            trans.commit();
+        }
+        catch (HibernateException e) {
+            if (trans!=null)
+                trans.rollback();
+            e.printStackTrace();
+
+        }
+        finally{
+             session.close();
+        }
+
+        return toReturn;
+    }
+    
+    /**
+     * Helper method that retrieves single device block from database
+     * @param int deviceAddress
+     * @return DataSamplerDevice
+     */
+    public DeviceBlock getDeviceBlock(String name) {
+
+        DeviceBlock toReturn = null;
+        Session session = factory.openSession();
+        Transaction trans = null;
+
+        try
+        {
+            trans = (Transaction) session.beginTransaction();
+
+            List<DeviceBlock> devices = (List<DeviceBlock>) session.createCriteria(DeviceBlock.class).add(Restrictions.eq("blockName", name));
+            for(DeviceBlock device : devices)
+            {
+                toReturn = device;
+                break;
+            }
+
+            trans.commit();
+        }
+        catch (HibernateException e) {
+            if (trans!=null)
+                trans.rollback();
+            e.printStackTrace();
+
+        }
+        finally{
+             session.close();
+        }
+
+        return toReturn;
+    }
+    
     /**
      * Helper method that retrieves single device from database
      * @param int deviceAddress
